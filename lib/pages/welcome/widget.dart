@@ -15,7 +15,7 @@ Widget appOnboardingPage(
       Image.asset(imgPath, fit: BoxFit.fitWidth),
       Container(
         margin: const EdgeInsets.only(top: 15),
-        child: text24Normal(text: title, color: AppColors.primaryElementBg),
+        child: text24Normal(text: title, color: AppColors.primaryBg),
       ),
       Container(
         margin: const EdgeInsets.only(top: 15),
