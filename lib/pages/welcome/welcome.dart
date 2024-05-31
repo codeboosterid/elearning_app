@@ -1,7 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../notifier/welcome_notifier.dart';
+import 'notifier/welcome_notifier.dart';
 import 'widget.dart';
 
 class Welcome extends ConsumerWidget {
@@ -32,6 +32,7 @@ class Welcome extends ConsumerWidget {
                   children: [
                     appOnboardingPage(
                       _controller,
+                      context,
                       imgPath: "assets/images/reading.png",
                       title: "First See Learning",
                       subtitle:
@@ -40,6 +41,7 @@ class Welcome extends ConsumerWidget {
                     ),
                     appOnboardingPage(
                       _controller,
+                      context,
                       imgPath: "assets/images/man.png",
                       title: "Connect With Everyone",
                       subtitle:
@@ -48,6 +50,7 @@ class Welcome extends ConsumerWidget {
                     ),
                     appOnboardingPage(
                       _controller,
+                      context,
                       imgPath: "assets/images/boy.png",
                       title: "Always Facinated Learning",
                       subtitle:
