@@ -36,7 +36,7 @@ class Welcome extends ConsumerWidget {
                       imgPath: "assets/images/reading.png",
                       title: "First See Learning",
                       subtitle:
-                          "Forget about the paper, now learning in all in one place 123",
+                          "Forget about the paper, now learning in all in one place",
                       index: 1,
                     ),
                     appOnboardingPage(

@@ -26,3 +26,31 @@ Widget text16Normal(
     ),
   );
 }
+
+Widget text14Normal(
+    {String text = "", Color color = AppColors.primaryThirdElementText}) {
+  return Text(
+    text,
+    textAlign: TextAlign.start,
+    style: TextStyle(
+      color: color,
+      fontSize: 14,
+      fontWeight: FontWeight.normal,
+    ),
+  );
+}
+
+Widget textUnderline({String text = "Your Text Here"}) {
+  return GestureDetector(
+    onTap: () {},
+    child: Text(
+      text,
+      style: const TextStyle(
+        fontWeight: FontWeight.normal,
+        color: AppColors.primaryText,
+        decoration: TextDecoration.underline,
+        decorationColor: AppColors.primaryText,
+      ),
+    ),
+  );
+}

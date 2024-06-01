@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../common/utils/app_colors.dart';
 import '../../common/widgets/app_shadow.dart';
 import '../../common/widgets/text_widgets.dart';
-import '../sign_in/sign_in.dart';
 
 Widget appOnboardingPage(
   PageController controller,
@@ -36,20 +35,18 @@ Widget _nextButton(int index, PageController controller, BuildContext context) {
         controller.animateToPage(index,
             duration: const Duration(milliseconds: 300), curve: Curves.linear);
       } else {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => const SignIn()));
+        Navigator.pushNamed(context, "/signIn");
       }
     },
     child: Container(
-        width: 325,
-        height: 50,
-        margin: const EdgeInsets.only(top: 100, left: 25, right: 25),
-        decoration: appBoxShadow(),
-        child: Center(
-            child: text16Normal(
-                text: index < 3 ? "Next" : "Get started",
-                color: Colors.white))),
+      width: 325,
+      height: 50,
+      margin: const EdgeInsets.only(top: 100, left: 25, right: 25),
+      decoration: appBoxShadow(),
+      child: Center(
+        child: text16Normal(
+            text: index < 3 ? "Next" : "Get started", color: Colors.white),
+      ),
+    ),
   );
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "399123563733",
+    "project_id": "flutter-ulearning-app-d86f8",
+    "storage_bucket": "flutter-ulearning-app-d86f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399123563733:android:33f1c02b7f51d12c478e5c",
+        "android_client_info": {
+          "package_name": "com.codeboosterid.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_1PuEeXQrc5YcXyzjoobhczOaQzgkKXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
