@@ -5,6 +5,7 @@ import 'image_widgets.dart';
 import 'text_widgets.dart';
 
 Widget appTextField({
+  TextEditingController? controller,
   String text = "",
   String iconName = "",
   String hintText = "Type in your info",

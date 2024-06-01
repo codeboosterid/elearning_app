@@ -20,6 +20,8 @@ class SignUpController {
     String password = state.password;
     String rePassword = state.rePassword;
 
+    print(state.userName);
+
     if (state.userName.isEmpty || name.isEmpty) {
       toastInfo("Your name is empty");
       return;
@@ -67,9 +69,18 @@ class SignUpController {
         await credential.user?.sendEmailVerification();
         await credential.user?.updateDisplayName(name);
         toastInfo(
-            "asn email has been to verify your account. Please open that email and Confirm your identity");
+            "Your email has been send to verify your account. Please open that email and Confirm your identity");
         context.pop();
       }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        toastInfo("This password is too weak");
+      } else if (e.code == 'email-already-in-use') {
+        toastInfo("This email address has already been registered");
+      } else if (e.code == 'user-not-found') {
+        toastInfo("User not found");
+      }
+      ref.read(appLoaderProvider.notifier).setLoaderValue(false);
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());
