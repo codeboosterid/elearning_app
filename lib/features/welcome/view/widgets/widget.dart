@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../common/utils/app_colors.dart';
-import '../../common/utils/constants.dart';
-import '../../common/widgets/app_shadow.dart';
-import '../../common/widgets/text_widgets.dart';
-import '../../global.dart';
+import '../../../../common/utils/app_colors.dart';
+import '../../../../common/utils/constants.dart';
+import '../../../../common/widgets/app_shadow.dart';
+import '../../../../common/widgets/text_widgets.dart';
+import '../../../../global.dart';
 
 Widget appOnboardingPage(
   PageController controller,
@@ -23,7 +23,7 @@ Widget appOnboardingPage(
       Container(
         margin: const EdgeInsets.only(top: 15),
         padding: const EdgeInsets.only(left: 30, right: 30),
-        child: text16Normal(text: subtitle),
+        child: Text16Normal(text: subtitle),
       ),
       _nextButton(index, controller, context)
     ],
@@ -49,7 +49,7 @@ Widget _nextButton(int index, PageController controller, BuildContext context) {
       margin: const EdgeInsets.only(top: 100, left: 25, right: 25),
       decoration: appBoxShadow(),
       child: Center(
-        child: text16Normal(
+        child: Text16Normal(
             text: index < 3 ? "Next" : "Get started", color: Colors.white),
       ),
     ),

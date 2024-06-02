@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginRequestEntity {
@@ -37,7 +39,7 @@ class LoginRequestEntity {
 class UserLoginResponseEntity {
   int? code;
   String? msg;
-  UserItem? data;
+  UserProfile? data;
 
   UserLoginResponseEntity({
     this.code,
@@ -49,12 +51,12 @@ class UserLoginResponseEntity {
       UserLoginResponseEntity(
         code: json["code"],
         msg: json["msg"],
-        data: UserItem.fromJson(json["data"]),
+        data: UserProfile.fromJson(json["data"]),
       );
 }
 
 // login result
-class UserItem {
+class UserProfile {
   String? access_token;
   String? token;
   String? name;
@@ -63,7 +65,7 @@ class UserItem {
   int? online;
   int? type;
 
-  UserItem({
+  UserProfile({
     this.access_token,
     this.token,
     this.name,
@@ -73,7 +75,7 @@ class UserItem {
     this.type,
   });
 
-  factory UserItem.fromJson(Map<String, dynamic> json) => UserItem(
+  factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
         access_token: json["access_token"],
         token: json["token"],
         name: json["name"],

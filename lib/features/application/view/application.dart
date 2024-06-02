@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../common/utils/app_colors.dart';
-import '../../common/widgets/app_shadow.dart';
-import 'notifier/application_nav_notifier.dart';
+import '../../../common/utils/app_colors.dart';
+import '../../../common/widgets/app_shadow.dart';
+import '../provider/application_nav_notifier.dart';
 import 'widgets/widgets.dart';
 
 class Application extends ConsumerWidget {

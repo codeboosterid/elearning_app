@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/utils/app_colors.dart';
-import '../../../common/widgets/image_widgets.dart';
+import '../../../../common/utils/app_colors.dart';
+import '../../../../common/utils/image_res.dart';
+import '../../../../common/widgets/image_widgets.dart';
+import '../../../home/home.dart';
 
 var bottomTabs = <BottomNavigationBarItem>[
   BottomNavigationBarItem(
@@ -60,26 +62,15 @@ Widget _buttomContainer(
 
 Widget appScreens({int index = 0}) {
   List<Widget> screens = [
+    const Home(),
+    Center(child: appImage(imagePath: ImageRes.home, width: 250, height: 250)),
     Center(
-        child: appImage(
-            imagePath: "assets/icons/home.png", width: 500, height: 500)),
+        child: appImage(imagePath: ImageRes.search, width: 250, height: 250)),
+    Center(child: appImage(imagePath: ImageRes.play, width: 250, height: 250)),
     Center(
-        child: appImage(
-            imagePath: "assets/icons/search.png", width: 500, height: 500)),
+        child: appImage(imagePath: ImageRes.message, width: 250, height: 250)),
     Center(
-        child: appImage(
-            imagePath: "assets/icons/play-circle1.png",
-            width: 500,
-            height: 500)),
-    Center(
-        child: appImage(
-            imagePath: "assets/icons/message-circle.png",
-            width: 500,
-            height: 500)),
-    Center(
-        child: appImage(
-            imagePath: "assets/icons/user.png", width: 500, height: 500)),
+        child: appImage(imagePath: ImageRes.profile, width: 250, height: 250)),
   ];
-
   return screens[index];
 }

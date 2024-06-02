@@ -1,10 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../../features/home/home.dart';
 import '../../global.dart';
-import '../../pages/application/application.dart';
-import '../../pages/sign_in/sign_in.dart';
-import '../../pages/sign_up/sign_up.dart';
-import '../../pages/welcome/welcome.dart';
+import '../../features/application/view/application.dart';
+import '../../features/sign_in/view/sign_in.dart';
+import '../../features/sign_up/view/sign_up.dart';
+import '../../features/welcome/view/welcome.dart';
 import 'app_routes_names.dart';
 
 class AppPages {
@@ -14,6 +14,7 @@ class AppPages {
       RouteEntity(path: AppRoutesNames.SIGN_IN, page: const SignIn()),
       RouteEntity(path: AppRoutesNames.REGISTER, page: const SignUp()),
       RouteEntity(path: AppRoutesNames.APPLICATION, page: const Application()),
+      RouteEntity(path: AppRoutesNames.HOME, page: const Home()),
     ];
   }
 
