@@ -90,9 +90,8 @@ class SignInController {
         AppConstants.STORAGE_USER_PROFILE_KEY,
         jsonEncode(
           {
-            'name': 'faizalharwin, Skom',
-            'email': 'codeboosterID@gmail.com',
-            'age': 34,
+            'name': 'Haura Hanania',
+            'email': 'haura@gmail.com',
           },
         ),
       );

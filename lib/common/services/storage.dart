@@ -40,4 +40,8 @@ class StorageService {
     var userProfile = UserProfile.fromJson(profileJson);
     return userProfile;
   }
+
+  String getUserToken() {
+    return _pref.getString(AppConstants.STORAGE_USER_TOKEN_KEY) ?? "";
+  }
 }

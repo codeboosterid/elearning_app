@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'common/routes/routes.dart';
+import 'common/services/http_util.dart';
 
 Future<void> main() async {
   await Global.init();
+
+  HttpUtil().post("api/auth/login");
 
   runApp(const ProviderScope(child: MyApp()));
 }

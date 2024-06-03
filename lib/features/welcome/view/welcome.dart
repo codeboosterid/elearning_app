@@ -19,7 +19,7 @@ class Welcome extends ConsumerWidget {
         child: Scaffold(
           backgroundColor: Colors.white,
           body: Container(
-            margin: const EdgeInsets.only(top: 100),
+            margin: const EdgeInsets.only(top: 30),
             child: Stack(
               alignment: Alignment.center,
               children: [
