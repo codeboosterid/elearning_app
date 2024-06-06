@@ -77,7 +77,7 @@ class _SignInState extends ConsumerState<SignIn> {
                       const SizedBox(height: 100),
                       Center(
                         child: appButton(
-                          buttonName: "Login 123",
+                          buttonName: "Login",
                           func: () => _controller.handleSignIn(ref),
                         ),
                       ),

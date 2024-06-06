@@ -1,11 +1,12 @@
 import 'dart:convert';
 
-import 'package:elearning_app/common/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../common/global_loader/global_loader.dart';
+import '../../../common/models/user.dart';
 import '../../../common/utils/constants.dart';
 import '../../../common/utils/popup_message.dart';
 import '../../../global.dart';
@@ -14,13 +15,15 @@ import '../provider/sign_in_notifier.dart';
 import '../repo/sign_in_repo.dart';
 
 class SignInController {
+  // WidgetRef ref;
+
   SignInController();
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   Future<void> handleSignIn(WidgetRef ref) async {
-    var state = ref.read(signInNotifierProvider);
-
+    var state = ref.watch(signInNotifierProvider);
     String email = state.email;
     String password = state.password;
 
@@ -35,19 +38,20 @@ class SignInController {
       toastInfo("Your password is empty");
       return;
     }
-
     ref.read(appLoaderProvider.notifier).setLoaderValue(true);
+
     try {
       final credential = await SignInRepo.firebaseSignIn(email, password);
+
       if (credential.user == null) {
         toastInfo("User not found");
         return;
       }
+
       if (!credential.user!.emailVerified) {
         toastInfo("You must verify your email address first !");
         return;
       }
-
       var user = credential.user;
 
       if (user != null) {
@@ -63,50 +67,50 @@ class SignInController {
         loginRequestEntity.open_id = id;
         loginRequestEntity.type = 1;
         asyncPostAllData(loginRequestEntity);
+        if (kDebugMode) {
+          print("user logged in");
+        }
       } else {
-        toastInfo("Login error!!");
+        toastInfo("login error");
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         toastInfo("User not found");
       } else if (e.code == 'wrong-password') {
         toastInfo("Your password is wrong");
-      } else if (e.code == 'invalid-credential') {
-        toastInfo("Wrong credentials");
       }
-    } catch (e) {
-      if (kDebugMode) {
-        // print(e.toString());
-      }
-    }
-    ref.read(appLoaderProvider.notifier).setLoaderValue(false);
-  }
-
-  void asyncPostAllData(LoginRequestEntity loginRequestEntity) {
-    // we need to task to server
-    // have a local storage
-    try {
-      Global.storageService.setString(
-        AppConstants.STORAGE_USER_PROFILE_KEY,
-        jsonEncode(
-          {
-            'name': 'Haura Hanania',
-            'email': 'haura@gmail.com',
-          },
-        ),
-      );
-
-      Global.storageService
-          .setString(AppConstants.STORAGE_USER_TOKEN_KEY, "123456");
-
-      // navigator.pushNamed("/application");
-      navKey.currentState
-          ?.pushNamedAndRemoveUntil("/application", (route) => false);
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());
       }
     }
-    // redirect to new page
+
+    ref.read(appLoaderProvider.notifier).setLoaderValue(false);
+  }
+
+  Future<void> asyncPostAllData(LoginRequestEntity loginRequestEntity) async {
+    //we need to talk to server
+    var result = await SignInRepo.login(params: loginRequestEntity);
+    if (result.code == 200) {
+      //have local storage
+      try {
+        //try to remember user info
+        Global.storageService.setString(
+            AppConstants.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data));
+        Global.storageService.setString(
+            AppConstants.STORAGE_USER_TOKEN_KEY, result.data!.access_token!);
+
+        navKey.currentState
+            ?.pushNamedAndRemoveUntil("/application", (route) => false);
+      } catch (e) {
+        if (kDebugMode) {
+          print(e.toString());
+        }
+      }
+
+      //redirect to new page
+    } else {
+      toastInfo("Login error");
+    }
   }
 }
