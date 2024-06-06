@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../common/utils/app_colors.dart';
+import '../../../../common/utils/constants.dart';
 import '../../../../common/utils/image_res.dart';
 import '../../../../common/widgets/app_shadow.dart';
 import '../../../../common/widgets/image_widgets.dart';
@@ -93,7 +94,8 @@ class HelloText extends StatelessWidget {
   }
 }
 
-AppBar homeAppBar() {
+AppBar homeAppBar(WidgetRef ref) {
+  var profileState = ref.watch(homeUserProfileProvider);
   return AppBar(
     title: Container(
       margin: const EdgeInsets.only(left: 7, right: 7),
@@ -101,9 +103,16 @@ AppBar homeAppBar() {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           appImage(width: 18, height: 12, imagePath: ImageRes.menu),
-          GestureDetector(
-            child: const AppBoxDecorationImage(),
-          )
+          profileState.when(
+              data: (value) => GestureDetector(
+                    child: AppBoxDecorationImage(
+                      imagePath:
+                          "${AppConstants.SERVER_API_URL}${value.avatar!}",
+                    ),
+                  ),
+              error: (err, stack) =>
+                  appImage(width: 18, height: 12, imagePath: ImageRes.profile),
+              loading: () => Container())
         ],
       ),
     ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../common/widgets/app_bar.dart';
 import '../../common/widgets/search_widgets.dart';
 import 'controller/home_controller.dart';
 import 'view/widgets/home_widget.dart';
@@ -25,7 +24,7 @@ class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: homeAppBar(),
+      appBar: homeAppBar(ref),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: SingleChildScrollView(
